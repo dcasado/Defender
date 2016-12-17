@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -34,40 +35,35 @@ public class Assets {
                 new Sprite(new Texture(Gdx.files.internal("badlogic.jpg")));
         shotSprite = new Sprite(new Texture(Gdx.files.internal("shot.jpg")));
 
-        BitmapFont robotoCondensedTitle = generateFont(100);
-        BitmapFont robotoCondensedButton = generateFont(50);
-        BitmapFont robotoCondensedDialogButton = generateFont(100);
+        //Fonts
+        BitmapFont titleFont = generateFont(60);
+        BitmapFont buttonFont = generateFont(35);
 
-        //Style
-        Label.LabelStyle titleLabelStyle =
-                new Label.LabelStyle(robotoCondensedTitle, Color.RED);
+        BitmapFont dialogTitleFont = generateFont(55);
+        BitmapFont dialogButton = generateFont(50);
 
-        Label.LabelStyle dialogLabelStyle = new Label.LabelStyle
-                (robotoCondensedButton, Color.BLACK);
+        //Styles
+        Label.LabelStyle titleLabelStyle = new Label.LabelStyle(titleFont, Color.RED);
 
-        TextButton.TextButtonStyle textButtonStyle =
-                new TextButton.TextButtonStyle();
-        textButtonStyle.font = robotoCondensedButton;
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = buttonFont;
         textButtonStyle.fontColor = Color.BLACK;
 
         //Dialog
-        Window.WindowStyle dialogStyle = new Window.WindowStyle
-                (robotoCondensedTitle, Color.BLACK, /*new SpriteDrawable(enemySprite)*/ new BaseDrawable());
+        Dialog.WindowStyle dialogStyle = new Dialog.WindowStyle(dialogTitleFont, Color.BLACK, new BaseDrawable());
 
         TextButton.TextButtonStyle dialogButtonStyle = new TextButton
                 .TextButtonStyle();
-        dialogButtonStyle.font = robotoCondensedDialogButton;
+        dialogButtonStyle.font = dialogButton;
         dialogButtonStyle.fontColor = Color.BLACK;
 
-        //skin
+        //Skin
         skin = new Skin();
-        skin.add("robotoCondensedTitle", robotoCondensedTitle);
-        skin.add("robotoCondensedButton", robotoCondensedButton);
-        skin.add("textButton", textButtonStyle,
-                TextButton.TextButtonStyle.class);
+        skin.add("robotoCondensedTitle", titleFont);
+        skin.add("button", buttonFont);
+        skin.add("textButton", textButtonStyle, TextButton.TextButtonStyle.class);
         skin.add("titleLabel", titleLabelStyle, Label.LabelStyle.class);
-        skin.add("dialog", dialogStyle, Window.WindowStyle.class);
-        skin.add("dialogLabel", dialogLabelStyle, Label.LabelStyle.class);
+        skin.add("dialog", dialogStyle, Dialog.WindowStyle.class);
         skin.add("dialogButton", dialogButtonStyle, TextButton.TextButtonStyle.class);
     }
 
@@ -77,13 +73,13 @@ public class Assets {
             generator = new FreeTypeFontGenerator(
                     Gdx.files.internal("fonts/RobotoCondensedRegular.ttf"));
             FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-            parameter.size = size;
+            int fontSize = Gdx.graphics.getWidth() * size / 1024;
+            parameter.size = fontSize;
 
             return generator.generateFont(parameter);
         } finally {
             if (generator != null)
-                generator
-                        .dispose(); // don't forget to dispose to avoid memory leaks!
+                generator.dispose(); // don't forget to dispose to avoid memory leaks!
         }
     }
 }

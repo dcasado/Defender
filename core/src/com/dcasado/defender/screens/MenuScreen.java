@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dcasado.defender.Assets;
 import com.dcasado.defender.Defender;
@@ -28,7 +29,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Defender game) {
         this.game = game;
         this.stage = new Stage();
-        this.viewport = new ExtendViewport(1280, 720);
+        this.viewport = new FitViewport(1024, 576);
         stage.setViewport(viewport);
         Gdx.input.setInputProcessor(stage);
         layout = new GlyphLayout();
@@ -71,17 +72,19 @@ public class MenuScreen extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height);
+        stage.getViewport().update(width, height);
 
         //float viewportWidth = viewport.getWorldWidth();
         float viewportHeight = viewport.getWorldHeight();
 
-        setActorPosition(titleLabel, "robotoCondensedTitle", "Defender", 0, viewportHeight * 0.35f);
-        setActorPosition(playButton, "robotoCondensedButton", "Play", 0, 0);
-        setActorPosition(exitButton, "robotoCondensedButton", "Exit", 0, viewportHeight * -0.11f);
+        setActorPosition(titleLabel, "robotoCondensedTitle", "Defender", 0, viewportHeight * 0.32f);
+        setActorPosition(playButton, "button", "Play", 0, 0);
+        setActorPosition(exitButton, "button", "Exit", 0, viewportHeight * -0.16f);
 
-        Gdx.app.log(Assets.TAG, "World " + viewport.getWorldHeight());
-        Gdx.app.log(Assets.TAG, "Screen " + viewport.getScreenHeight());
+        Gdx.app.log(Assets.TAG, "World Width " + viewport.getWorldWidth());
+        Gdx.app.log(Assets.TAG, "World Height " + viewport.getWorldHeight());
+        Gdx.app.log(Assets.TAG, "Screen Width " + viewport.getScreenWidth());
+        Gdx.app.log(Assets.TAG, "Screen Height " + viewport.getScreenHeight());
     }
 
     private void setActorPosition(Actor actor, String font, String text, float x, float y) {

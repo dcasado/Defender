@@ -91,7 +91,7 @@ public class World {
                 (RenderComponent.class);
         PositionComponent positionComponent = pooledEngine.createComponent
                 (PositionComponent.class);
-        positionComponent.position.set(1000, Gdx.graphics.getHeight() / 2);
+        positionComponent.position.set(Gdx.graphics.getWidth()*0.5f, Gdx.graphics.getHeight() / 2);
         VelocityComponent velocityComponent = pooledEngine.createComponent
                 (VelocityComponent.class);
         velocityComponent.velocity.x = -20;

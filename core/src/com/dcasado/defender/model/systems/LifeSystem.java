@@ -37,6 +37,7 @@ public class LifeSystem extends IteratingSystem {
             if (enemyComponent != null)
                 engine.removeEntity(entity);
             if (playerComponent != null)
+                game.getScreen().dispose();
                 game.setScreen(new MenuScreen(game));
         }
     }

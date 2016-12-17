@@ -4,13 +4,9 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -36,11 +32,9 @@ public class GameScreen extends ScreenAdapter {
     private Vector2 touch;
     private State state;
     private Viewport viewport;
-    private Camera camera;
 
     public GameScreen(Defender game) {
-        camera = new PerspectiveCamera();
-        viewport = new FitViewport(1280, 720, camera);
+        viewport = new FitViewport(1024, 576);
         Gdx.input.setCatchBackKey(true);
         this.game = game;
         this.pooledEngine = new PooledEngine();
@@ -125,29 +119,27 @@ public class GameScreen extends ScreenAdapter {
 
     class ExitDialog extends Dialog {
 
-        {
-            key(Input.Keys.ENTER, false);
-            key(Input.Keys.ESCAPE, true);
-        }
-
         public ExitDialog() {
             super("Do you want to exit the level?", Assets.skin, "dialog");
-            //getButtonTable().defaults().height(60);
-            button("yes", true, Assets.skin.get("dialogButton", TextButton.TextButtonStyle.class));
-            button("no", false, Assets.skin.get("dialogButton", TextButton.TextButtonStyle.class));
-            //padTop(60);
+            TextButton yesButton = new TextButton("Yes", Assets.skin, "dialogButton");
+            button(yesButton, true);
+            //button("Yes", true, Assets.skin.get("dialogButton", TextButton.TextButtonStyle.class));
+            TextButton noButton = new TextButton("No", Assets.skin, "dialogButton");
+            button(noButton, false);
+            //button("No", false, Assets.skin.get("dialogButton", TextButton.TextButtonStyle.class));
+            getContentTable().padBottom(viewport.getWorldHeight() * 0.37f);
+            getButtonTable().getCell(yesButton).expand();
+            getButtonTable().getCell(noButton).expand();
+            setModal(true);
             setMovable(false);
             setResizable(false);
-        }
 
-        @Override
-        public float getPrefHeight() {
-            return 720f;
-        }
+            key(Input.Keys.ENTER, false);
+            key(Input.Keys.ESCAPE, true);
 
-        @Override
-        public float getPrefWidth() {
-            return 1280f;
+            Gdx.app.log(Assets.TAG, "Dialog width: " + getWidth());
+            Gdx.app.log(Assets.TAG, "Dialog height: " + getHeight());
+            Gdx.app.log(Assets.TAG, "Dialog prefWidth: " + getPrefWidth());
         }
 
         @Override
