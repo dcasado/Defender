@@ -30,9 +30,9 @@ public class Assets {
 
     public static void load() {
         playerSprite =
-                new Sprite(new Texture(Gdx.files.internal("player.jpg")));
+                new Sprite(new Texture(Gdx.files.internal("player.png")));
         enemySprite =
-                new Sprite(new Texture(Gdx.files.internal("badlogic.jpg")));
+                new Sprite(new Texture(Gdx.files.internal("enemy.png")));
         shotSprite = new Sprite(new Texture(Gdx.files.internal("shot.jpg")));
 
         //Fonts

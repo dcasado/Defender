@@ -57,7 +57,7 @@ public class World {
 
         positionComponent.position.set(90, Gdx.graphics.getHeight() / 2);
 
-        shooterComponent.interval = 1;
+        shooterComponent.interval = 0.5f;
 
         entity.add(playerComponent)
                 .add(boundsComponent)
@@ -79,7 +79,7 @@ public class World {
                 pooledEngine.createComponent(EnemyComponent.class);
         LifeComponent lifeComponent =
                 pooledEngine.createComponent(LifeComponent.class);
-        lifeComponent.life = 20;
+        lifeComponent.life = 15;
         BoundsComponent boundsComponent = pooledEngine.createComponent
                 (BoundsComponent.class);
         boundsComponent.bounds.setWidth(EnemyComponent.WIDTH);
@@ -91,7 +91,7 @@ public class World {
                 (RenderComponent.class);
         PositionComponent positionComponent = pooledEngine.createComponent
                 (PositionComponent.class);
-        positionComponent.position.set(Gdx.graphics.getWidth()*0.5f, Gdx.graphics.getHeight() / 2);
+        positionComponent.position.set(Gdx.graphics.getWidth()*0.75f, Gdx.graphics.getHeight() / 2);
         VelocityComponent velocityComponent = pooledEngine.createComponent
                 (VelocityComponent.class);
         velocityComponent.velocity.x = -20;
