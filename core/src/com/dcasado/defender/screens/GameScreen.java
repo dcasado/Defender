@@ -34,7 +34,7 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
 
     public GameScreen(Defender game) {
-        viewport = new FitViewport(1024, 576);
+        viewport = new FitViewport(1280, 720);
         Gdx.input.setCatchBackKey(true);
         this.game = game;
         this.pooledEngine = new PooledEngine();

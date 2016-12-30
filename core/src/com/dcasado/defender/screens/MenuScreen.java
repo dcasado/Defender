@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dcasado.defender.Assets;
@@ -29,7 +28,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Defender game) {
         this.game = game;
         this.stage = new Stage();
-        this.viewport = new FitViewport(1024, 576);
+        this.viewport = new FitViewport(1280, 720);
         stage.setViewport(viewport);
         Gdx.input.setInputProcessor(stage);
         layout = new GlyphLayout();

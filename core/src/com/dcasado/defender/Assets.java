@@ -11,9 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 /**
  * Created by David on 17/01/2016.
@@ -73,7 +71,7 @@ public class Assets {
             generator = new FreeTypeFontGenerator(
                     Gdx.files.internal("fonts/RobotoCondensedRegular.ttf"));
             FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-            int fontSize = Gdx.graphics.getWidth() * size / 1024;
+            int fontSize = Gdx.graphics.getWidth() * size / 1280;
             parameter.size = fontSize;
 
             return generator.generateFont(parameter);
